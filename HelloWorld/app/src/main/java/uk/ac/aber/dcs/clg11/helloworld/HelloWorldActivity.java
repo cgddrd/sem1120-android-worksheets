@@ -8,24 +8,49 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class HelloWorldActivity extends AppCompatActivity {
 
+    private TextView greetingLabel;
+    private EditText textInputField;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hello_world);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        greetingLabel = (TextView) findViewById(R.id.greeting);
+        textInputField = (EditText) findViewById(R.id.textInput);
+
+        Button sayHelloButton = (Button) findViewById(R.id.changeText);
+
+        // CG - Use an anonymous inner class to implement the event listener for the button.
+        sayHelloButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+
+                String greeting = textInputField.getText().toString();
+                greetingLabel.setText(greeting);
+
             }
         });
+
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
     }
 
     @Override
